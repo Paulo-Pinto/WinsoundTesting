@@ -1,3 +1,4 @@
+import time
 import winsound
 import pandas as pd
 
@@ -22,9 +23,27 @@ def request_sound():
     print(f"Bad value, f {freq} d {duration}")
 
 
+def interval_reminder(duration=60, interval=10):
+    """Beep reminder at an interval
+
+    interval and duration in minutes"""
+
+    for i in range(0, int(duration / interval)):
+        print(f"Started {60 * interval}m interval")
+        time.sleep(60 * interval)
+        print("Reminder played...")
+        reminder_sound()
+
+
+def reminder_sound():
+    for j in range(1, 6):
+        winsound.Beep(2000 + j * 300, 50)
+
+
 if __name__ == '__main__':
     # winsound.PlaySound("*", winsound.SND_ALIAS)
 
     # csv_to_sound()
     # dial_up(input("Type your phone number: "))
-    request_sound()
+    # request_sound()
+    interval_reminder()
